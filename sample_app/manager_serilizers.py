@@ -1,5 +1,5 @@
 from rest_framework.serializers import ModelSerializer
-from . models import *
+from Api_view.manager.models import *
 
 
 class MangerSerializer(ModelSerializer):

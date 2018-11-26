@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-from sample_app.models import EmployeeDetail, Manager, Skill
+from sample_app.skill.models import Skill
 from sample_app.serializers import SkillDetailsSerializer
 from rest_framework import generics
 

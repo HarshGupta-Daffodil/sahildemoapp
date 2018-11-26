@@ -4,7 +4,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from sample_app.manager_serilizers import MangerSerializer
-from Api_view.models import Manager
+from Api_view.manager.models import *
 
 
 class ManagerView(APIView):

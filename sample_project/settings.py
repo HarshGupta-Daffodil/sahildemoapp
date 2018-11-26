@@ -39,6 +39,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'Api_view',
+    'Api_view.department',
+    'Api_view.employee',
+    'Api_view.manager',
+    'Api_view.skill',
+
     # 'sample_app',
 ]
 

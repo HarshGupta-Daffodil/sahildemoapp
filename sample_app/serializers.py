@@ -1,5 +1,7 @@
 from rest_framework.serializers import ModelSerializer
-from . models import *
+from Api_view.department.models import *
+from Api_view.skill.models import*
+from Api_view.employee.models import *
 
 
 class SkillDetailsSerializer(ModelSerializer):
