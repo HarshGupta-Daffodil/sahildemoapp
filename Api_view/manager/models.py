@@ -9,4 +9,3 @@ class Manager(models.Model):
     dob = models.DateTimeField(auto_now_add=False)
     date_of_joining = models.DateTimeField(auto_now_add=True)
 
-
