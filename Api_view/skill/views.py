@@ -3,8 +3,8 @@ from __future__ import unicode_literals
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
-from sample_app.serializers import SkillDetailsSerializer
-from Api_view.models import *
+from Api_view.skill.models import *
+from .serializer import SkillDetailsSerializer
 
 
 class SkillView(APIView):
@@ -15,7 +15,7 @@ class SkillView(APIView):
         """
         skills = Skill.objects.all()
         response = {
-            'payment_methods': SkillDetailsSerializer(
+            'Details': SkillDetailsSerializer(
                 skills,
                 many=True
             ).data
@@ -47,8 +47,8 @@ class UpdateSkill(APIView):
                 ).data
             }
         else:
-             response = {
-                "data":"entry not exist"
+            response = {
+                "data": "entry not exist"
             }
         return Response(response)
 
@@ -67,7 +67,6 @@ class UpdateSkill(APIView):
         update a particular entry based in id
         """
         skills = Skill.objects.get(pk=pk)
-        print request.data
         serializer = SkillDetailsSerializer(skills, data=request.data)
         serializer.is_valid()
         serializer.save()

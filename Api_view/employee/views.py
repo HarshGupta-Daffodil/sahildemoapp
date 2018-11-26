@@ -3,8 +3,11 @@ from __future__ import unicode_literals
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
-from sample_app.serializers import EmployeeSerializer
-from Api_view.models import *
+from Api_view.employee.models import *
+from Api_view.department.models import *
+from Api_view.manager.models import *
+from Api_view.skill.models import *
+from .serializer import EmployeeDetailsSerializer
 
 
 class EmployeeView(APIView):
@@ -15,7 +18,7 @@ class EmployeeView(APIView):
         """
         employee = EmployeeDetail.objects.all()
         response = {
-            'payment_methods': EmployeeSerializer(
+            'details': EmployeeDetailsSerializer(
                 employee,
                 many=True
             ).data
@@ -27,18 +30,12 @@ class EmployeeView(APIView):
         Create a new entry
         """
         data = request.data
-        skill_data = data.pop('skills')
-        Department_name = data.pop('department')
-        department = Department.objects.get(name=Department_name)
-        manager_name = data.pop('manager')
-        manager = Manager.objects.get(name=manager_name)
-        Employee = EmployeeDetail.objects.create(department=department, manager=manager, **data)
-        Employee.save()
-        for skill in skill_data:
-            skill_add, create = Skill.objects.get_or_create(name=skill)
-            Employee.skills.add(skill_add)
+        serializer = EmployeeDetailsSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+        
         return Response(
-                data=request.data
+                data="entry saved"
                 )
 
 
@@ -49,7 +46,7 @@ class UpdateEployee(APIView):
         """
         employee = EmployeeDetail.objects.get(pk=pk)
         response = {
-            'payment_methods': EmployeeSerializer(
+            'details': EmployeeDetailsSerializer(
                 employee,
             ).data
         }
@@ -62,21 +59,17 @@ class UpdateEployee(APIView):
         employee = EmployeeDetail.objects.get(pk=pk)
         employee.delete()
         return Response(
-            data=' Entry deleted',
-            status=status.HTTP_400_BAD_REQUEST
+            data=' Entry deleted'
         )
 
     def put(self, request, pk):
         """
         update a particular entry based in id
         """
-        data = request.data
-        data.pop('skills')
-        Department_name = data.pop('department')
-        department = Department.objects.get(name=Department_name)
-        manager_name = data.pop('manager')
-        manager = Manager.objects.get(name=manager_name)
-        EmployeeDetail.objects.filter(pk=pk).update(department=department, manager=manager, **data)
+        employee = EmployeeDetail.objects.get(pk=pk)
+        serializer = EmployeeDetailsSerializer(employee, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
         return Response(
                 data="request.data"
                 )
