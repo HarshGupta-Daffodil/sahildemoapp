@@ -3,7 +3,7 @@ from __future__ import unicode_literals
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
-from sample_app.serializers import SkillDetailsSerializer
+from .serilizer import SkillDetailsSerializer
 from Api_view.skill.models import *
 
 

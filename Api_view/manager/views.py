@@ -3,7 +3,7 @@ from __future__ import unicode_literals
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
-from sample_app.manager_serilizers import MangerSerializer
+from .serilizer import MangerSerializer
 from Api_view.manager.models import *
 
 
@@ -15,7 +15,7 @@ class ManagerView(APIView):
         """
         manager = Manager.objects.all()
         response = {
-            'payment_methods': MangerSerializer(
+            'details': MangerSerializer(
                 manager,
                 many=True
             ).data
@@ -41,7 +41,7 @@ class UpdateManager(APIView):
         """
         manager = Manager.objects.get(pk=pk)
         response = {
-            'payment_methods': MangerSerializer(
+            'details': MangerSerializer(
                 manager,
             ).data
         }

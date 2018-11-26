@@ -3,7 +3,7 @@ from __future__ import unicode_literals
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
-from sample_app.serializers import DeparmentSerializer
+from .serilizer import DepartmentSerializer
 from Api_view.department.models import Department
 from Api_view.manager.models import Manager
 
@@ -16,7 +16,7 @@ class DepartmentView(APIView):
         """
         departments = Department.objects.all()
         response = {
-            'payment_methods': DeparmentSerializer(
+            'payment_methods':DepartmentSerializer(
                 departments,
                 many=True
             ).data
@@ -28,12 +28,13 @@ class DepartmentView(APIView):
         Create a new entry
         """
         data = request.data
-        manager_id = request.data.pop('manager')
-        manager = Manager.objects.get(pk=int(manager_id))
-        Department.objects.update_or_create(manager=manager, **data)
+        serializer = DepartmentSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+        
         return Response(
-                data=request.data
-        )
+                data="entry saved"
+                )
 
 
 class UpdateDepartment(APIView):
@@ -44,7 +45,7 @@ class UpdateDepartment(APIView):
         """
         Departments = Department.objects.get(pk=pk)
         response = {
-            'payment_methods': DeparmentSerializer(
+            'department':DepartmentSerializer(
                 Departments,
             ).data
         }
@@ -64,10 +65,10 @@ class UpdateDepartment(APIView):
         """
         update a particular entry based in id
         """
-        data = request.data
-        manager_id = data.pop('manager')
-        manager = Manager.objects.get(pk=manager_id)
-        Department.objects.filter(pk=pk).update(manager=manager, **data)
+        Departments = Department.objects.get(pk=pk)
+        serializer = DepartmentSerializer(Departments, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
 
         return Response(
             data='Entry Updated'

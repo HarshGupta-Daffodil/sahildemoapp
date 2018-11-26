@@ -43,6 +43,11 @@ INSTALLED_APPS = [
     'Api_view.employee',
     'Api_view.manager',
     'Api_view.skill',
+    'sample_app.Department',
+    'sample_app.Employee',
+    'sample_app.Manager',
+    'sample_app.Skill',
+
 
     # 'sample_app',
 ]
