@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-from .models import Skill
-from .serilizer import SkillDetailsSerializer
 from rest_framework import generics
+from .models import Skill
+from .serializer import SkillDetailsSerializer
 
 
 class SkillList(generics.ListCreateAPIView):

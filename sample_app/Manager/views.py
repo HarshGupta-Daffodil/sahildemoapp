@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-from .models import Manager
-from .serilizer import MangerSerializer
 from rest_framework import generics
+from .models import Manager
+from .serializer import MangerSerializer
 
 
 class ManagerList(generics.ListCreateAPIView):

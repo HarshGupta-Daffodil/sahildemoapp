@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-from .models import *
-from .serilizer import DepartmentSerializer
 from rest_framework import generics
+from .models import *
+from .serializer import DepartmentSerializer
 
 
 class DepartmentList(generics.ListCreateAPIView):

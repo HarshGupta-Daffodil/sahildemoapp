@@ -3,9 +3,9 @@ from __future__ import unicode_literals
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
-from .serilizer import DepartmentSerializer
 from Api_view.department.models import Department
 from Api_view.manager.models import Manager
+from .serializer import DepartmentSerializer
 
 
 class DepartmentView(APIView):
@@ -16,7 +16,7 @@ class DepartmentView(APIView):
         """
         departments = Department.objects.all()
         response = {
-            'payment_methods':DepartmentSerializer(
+            'Details':DepartmentSerializer(
                 departments,
                 many=True
             ).data

@@ -3,11 +3,11 @@ from __future__ import unicode_literals
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
-from .serilizer import EmployeeDetailsSerializer
 from Api_view.employee.models import *
 from Api_view.department.models import *
 from Api_view.manager.models import *
 from Api_view.skill.models import *
+from .serializer import EmployeeDetailsSerializer
 
 
 class EmployeeView(APIView):

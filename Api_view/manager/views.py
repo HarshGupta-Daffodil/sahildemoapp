@@ -3,8 +3,8 @@ from __future__ import unicode_literals
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
-from .serilizer import MangerSerializer
 from Api_view.manager.models import *
+from .serializer import MangerSerializer
 
 
 class ManagerView(APIView):
@@ -26,10 +26,11 @@ class ManagerView(APIView):
         """
         Create a new entry
         """
-        data = request.data
-        Manager.objects.update_or_create(**data)
+        serializer = MangerSerializer(data=request.data)
+        serializer.is_valid()
+        serializer.save()
         return Response(
-                data=request.data
+                data='entry saved'
                 )
 
 
