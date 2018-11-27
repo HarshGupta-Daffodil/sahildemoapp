@@ -2,7 +2,7 @@
 from __future__ import unicode_literals
 
 from rest_framework import generics
-from .models import Skill
+from .models import skill
 from .serializer import SkillDetailsSerializer
 
 
@@ -10,7 +10,7 @@ class SkillList(generics.ListCreateAPIView):
     """
     list all Skills
     """
-    queryset = Skill.objects.all()
+    queryset = skill.objects.all()
     serializer_class = SkillDetailsSerializer
 
 
@@ -18,7 +18,7 @@ class GetSkill(generics.RetrieveAPIView):
     """
     retive the skill based on id
     """
-    queryset = Skill.objects
+    queryset = skill.objects
     serializer_class = SkillDetailsSerializer
 
 
@@ -26,7 +26,7 @@ class DeleteSkill(generics.DestroyAPIView):
     """
     Delete skill based on id
     """
-    queryset = Skill.objects
+    queryset = skill.objects
     serializer_class = SkillDetailsSerializer
 
 
@@ -34,7 +34,7 @@ class UpdateSkill(generics.UpdateAPIView):
     """
     Update skill based on id
     """
-    queryset = Skill.objects
+    queryset = skill.objects
     serializer_class = SkillDetailsSerializer
 
 
@@ -42,7 +42,7 @@ class CreateSkill(generics.ListCreateAPIView):
     """
     Create a new skill
     """
-    queryset = Skill.objects
+    queryset = skill.objects
     serializer_class = SkillDetailsSerializer
 
 

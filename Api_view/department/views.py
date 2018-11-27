@@ -3,8 +3,8 @@ from __future__ import unicode_literals
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
-from Api_view.department.models import Department
-from Api_view.manager.models import Manager
+from Api_view.department.models import DepartmentDetails
+from Api_view.manager.models import ManagerDetail
 from .serializer import DepartmentSerializer
 
 
@@ -14,9 +14,9 @@ class DepartmentView(APIView):
         """
         To list all the Departments
         """
-        departments = Department.objects.all()
+        departments = DepartmentDetails.objects.all()
         response = {
-            'Details':DepartmentSerializer(
+            'Details': DepartmentSerializer(
                 departments,
                 many=True
             ).data
@@ -27,11 +27,9 @@ class DepartmentView(APIView):
         """
         Create a new entry
         """
-        data = request.data
         serializer = DepartmentSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
-        
         return Response(
                 data="entry saved"
                 )
@@ -43,9 +41,9 @@ class UpdateDepartment(APIView):
         """
         Reterive Department based on id
         """
-        Departments = Department.objects.get(pk=pk)
+        Departments = DepartmentDetails.objects.get(pk=pk)
         response = {
-            'department':DepartmentSerializer(
+            'department': DepartmentSerializer(
                 Departments,
             ).data
         }
@@ -55,7 +53,7 @@ class UpdateDepartment(APIView):
         """
         Delete a particular entry based on id
         """
-        Departments = Department.objects.get(pk=pk)
+        Departments = DepartmentDetails.objects.get(pk=pk)
         Departments.delete()
         return Response(
             data=' Entry deleted',
@@ -65,7 +63,7 @@ class UpdateDepartment(APIView):
         """
         update a particular entry based in id
         """
-        Departments = Department.objects.get(pk=pk)
+        Departments = DepartmentDetails.objects.get(pk=pk)
         serializer = DepartmentSerializer(Departments, data=request.data)
         if serializer.is_valid():
             serializer.save()

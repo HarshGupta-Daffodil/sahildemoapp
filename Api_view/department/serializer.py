@@ -5,6 +5,6 @@ from Api_view.department.models import *
 
 class DepartmentSerializer(ModelSerializer):
     class Meta:
-        model = Department
+        model = DepartmentDetails
         fields = '__all__'
 

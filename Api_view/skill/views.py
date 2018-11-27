@@ -13,7 +13,7 @@ class SkillView(APIView):
         """
         To list all the skills
         """
-        skills = Skill.objects.all()
+        skills = SkillDetails.objects.all()
         response = {
             'Details': SkillDetailsSerializer(
                 skills,
@@ -27,7 +27,7 @@ class SkillView(APIView):
         Create a new entry
         """
         data = request.data
-        Skill.objects.update_or_create(**data)
+        SkillDetails.objects.update_or_create(**data)
         return Response(
                 data=request.data
                 )
@@ -39,7 +39,7 @@ class UpdateSkill(APIView):
         """
         Reterive skill based on id
         """
-        skills = Skill.objects.get(pk=pk)
+        skills = SkillDetails.objects.get(pk=pk)
         if skills:
             response = {
                 'payment_methods': SkillDetailsSerializer(
@@ -56,7 +56,7 @@ class UpdateSkill(APIView):
         """
         Delete a particular entry based on id
         """
-        skills = Skill.objects.get(pk=pk)
+        skills = SkillDetails.objects.get(pk=pk)
         skills.delete()
         return Response(
             data=' Entry deleted',
@@ -66,7 +66,7 @@ class UpdateSkill(APIView):
         """
         update a particular entry based in id
         """
-        skills = Skill.objects.get(pk=pk)
+        skills = SkillDetails.objects.get(pk=pk)
         serializer = SkillDetailsSerializer(skills, data=request.data)
         serializer.is_valid()
         serializer.save()

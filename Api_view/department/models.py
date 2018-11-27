@@ -2,9 +2,9 @@
 from __future__ import unicode_literals
 
 from django.db import models
-from ..manager.models import Manager
+from ..manager.models import ManagerDetail
 
 
-class Department(models.Model):
+class DepartmentDetails(models.Model):
     name = models.CharField(max_length=255)
-    manager = models.ForeignKey(Manager, null=True, blank=True)
+    manager = models.ForeignKey(ManagerDetail, null=True, blank=True)

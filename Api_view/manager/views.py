@@ -13,7 +13,7 @@ class ManagerView(APIView):
         """
         To list all the manager
         """
-        manager = Manager.objects.all()
+        manager = ManagerDetail.objects.all()
         response = {
             'details': MangerSerializer(
                 manager,
@@ -40,7 +40,7 @@ class UpdateManager(APIView):
         """
         Reterive skill based on id
         """
-        manager = Manager.objects.get(pk=pk)
+        manager = ManagerDetail.objects.get(pk=pk)
         response = {
             'details': MangerSerializer(
                 manager,
@@ -52,7 +52,7 @@ class UpdateManager(APIView):
         """
         Delete a particular entry based on id
         """
-        manager = Manager.objects.get(pk=pk)
+        manager = ManagerDetail.objects.get(pk=pk)
         manager.delete()
         return Response(
             data=' Entry deleted'
@@ -62,7 +62,7 @@ class UpdateManager(APIView):
         """
         update a particular entry based in id
         """
-        manager = Manager.objects.get(pk=pk)
+        manager = ManagerDetail.objects.get(pk=pk)
         serializer = MangerSerializer(manager, data=request.data)
         if not serializer.is_valid():
             return Response({'serializer': serializer, 'manager': manager})

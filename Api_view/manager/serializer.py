@@ -4,5 +4,5 @@ from Api_view.manager.models import *
 
 class MangerSerializer(ModelSerializer):
     class Meta:
-        model = Manager
+        model = ManagerDetail
         fields = '__all__'

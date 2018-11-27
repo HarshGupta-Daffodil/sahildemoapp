@@ -16,7 +16,7 @@ class EmployeeView(APIView):
         """
         To list all the employee
         """
-        employee = EmployeeDetail.objects.all()
+        employee = Employee.objects.all()
         response = {
             'details': EmployeeDetailsSerializer(
                 employee,
@@ -29,11 +29,9 @@ class EmployeeView(APIView):
         """
         Create a new entry
         """
-        data = request.data
         serializer = EmployeeDetailsSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
-        
         return Response(
                 data="entry saved"
                 )
@@ -44,7 +42,7 @@ class UpdateEployee(APIView):
         """
         Reterive EmployeeDetail based on id
         """
-        employee = EmployeeDetail.objects.get(pk=pk)
+        employee = Employee.objects.get(pk=pk)
         response = {
             'details': EmployeeDetailsSerializer(
                 employee,
@@ -56,7 +54,7 @@ class UpdateEployee(APIView):
         """
         Delete a particular entry based on id
         """
-        employee = EmployeeDetail.objects.get(pk=pk)
+        employee = Employee.objects.get(pk=pk)
         employee.delete()
         return Response(
             data=' Entry deleted'
@@ -66,7 +64,7 @@ class UpdateEployee(APIView):
         """
         update a particular entry based in id
         """
-        employee = EmployeeDetail.objects.get(pk=pk)
+        employee = Employee.objects.get(pk=pk)
         serializer = EmployeeDetailsSerializer(employee, data=request.data)
         if serializer.is_valid():
             serializer.save()

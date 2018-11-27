@@ -4,6 +4,6 @@ from Api_view.skill.models import*
 
 class SkillDetailsSerializer(ModelSerializer):
     class Meta:
-        model = Skill
+        model = SkillDetails
         fields = '__all__'
 

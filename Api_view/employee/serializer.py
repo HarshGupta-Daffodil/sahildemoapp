@@ -4,5 +4,5 @@ from Api_view.employee.models import *
 
 class EmployeeDetailsSerializer(ModelSerializer):
     class Meta:
-        model = EmployeeDetail
+        model = Employee
         fields = '__all__'
